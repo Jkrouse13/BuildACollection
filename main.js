@@ -50,10 +50,16 @@ function movie_sort(movie, movie2){
     return 0
 }
 
-movies.sort(movie_sort)
+function star_sort(movie, movie2){
+    if(movie.stars > movie2.stars) return -1
+    if(movie.stars < movie2.stars) return 1
+    return 0
+}
+
+movies.sort(star_sort)
 
 console.log(JSON.stringify(movies))
 
 movies.forEach(function(movies){
-  document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + "<tr>" + "<td>" + movies.title + "</td>"  + "<td>" + movies.director_list + "</td>"  + "<td>" + movies.year + "</td>"  + "<td>" + movies.actor_list.join(", ") + "</td>" + "<td>" + movies.genre + "</td>" + "</tr>"
+  document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + "<tr>" + "<td>" + movies.title + "</td>"  + "<td>" + movies.director_list + "</td>"  + "<td>" + movies.year + "</td>"  + "<td>" + movies.actor_list.join(", ") + "</td>" + "<td>" + movies.genre + "</td>" + "<td>"+ movies.stars + "</td>" + "<td>" + movies.metascore + "</td>" + "</tr>"
 })
