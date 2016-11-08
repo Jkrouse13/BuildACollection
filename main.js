@@ -44,7 +44,9 @@ movies.push(
   stars: "7.5",
   metascore: "63"}
 )
-movies.push(
+
+bad_movies = []
+bad_movies.push(
   {title: "Muppet Treasure Island ",
   director_list: "Brian Henson",
   genre: "Comedy",
@@ -53,7 +55,7 @@ movies.push(
   stars: "6.9",
   metascore: "n/a"}
 )
-movies.push(
+bad_movies.push(
   {title: "Pirates of the Caribbean: On Stranger Tides",
   director_list: "Rob Marshall",
   genre: "Action-Adventure",
@@ -62,7 +64,7 @@ movies.push(
   stars: "6.7",
   metascore: "45"}
 )
-movies.push(
+bad_movies.push(
   {title: "Cars 2",
   director_list: "John Lassiter",
   genre: "Animated",
@@ -71,7 +73,7 @@ movies.push(
   stars: "6.3",
   metascore: "57"}
 )
-movies.push(
+bad_movies.push(
   {title: "Indiana Jones and the Kingdom of the Crystal Skull",
   director_list: "Steven Spielberg",
   genre: "Action-Adventure",
@@ -80,7 +82,7 @@ movies.push(
   stars: "6.2",
   metascore: "65"}
 )
-movies.push(
+bad_movies.push(
   {title: "Dumb and Dumber To",
   director_list: "Bobby Farrelly",
   genre: "Comedy",
@@ -110,4 +112,15 @@ console.log(JSON.stringify(movies))
 
 movies.forEach(function(movies){
   document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + "<tr>" + "<td>" + movies.title + "</td>"  + "<td>" + movies.director_list + "</td>"  + "<td>" + movies.year + "</td>"  + "<td>" + movies.actor_list.join(", ") + "</td>" + "<td>" + movies.genre + "</td>" + "<td>"+ movies.stars + "</td>" + "<td>" + movies.metascore + "</td>" + "</tr>"
+})
+
+bad_movies.forEach(function(movies){
+  document.getElementById('bad_movies').innerHTML = document.getElementById('bad_movies').innerHTML + "<tr>" + "<td>" + movies.title + "</td>"  + "<td>" + movies.director_list + "</td>"  + "<td>" + movies.year + "</td>"  + "<td>" + movies.actor_list.join(", ") + "</td>" + "<td>" + movies.genre + "</td>" + "<td>"+ movies.stars + "</td>" + "<td>" + movies.metascore + "</td>" + "</tr>"
+})
+
+fetch('http://www.omdbapi.com/?t=Star+Wars%3A+Episode+V+-+The+Empire+Strikes+Back&y=1980&plot=short&r=json')
+.then(function(response){
+  return response.json()
+}).then(function(movie){
+  document.getElementById('movies').innerHTML = document.getElementById('movies').innerHTML + "<tr>" + "<td>" + movie.Title + "</td>"  + "<td>" + movie.Director + "</td>"  + "<td>" + movie.Released + "</td>"  + "<td>" + movie.Actors + "</td>" + "<td>" + movie.Genre + "</td>" + "<td>"+ movie.imdbRating + "</td>" + "<td>" + movie.Metascore + "</td>" + "</tr>"
 })
